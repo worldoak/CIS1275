@@ -8,7 +8,7 @@ int main()
 	const double pi = 3.14159, packingFactor = 0.8; //setting pi and the value used to account for empty space in the jar
 	float jarHeight, jarDiameter, jarThickness; //dimensions of the jar to be obtained from user
 	float beanLength = 0.625, beanDiameter = 0.25; //known dimensions of the beans to be used
-	double jarRadius, jarVolume, adjustedVolume, beanVolume, nBeans; //calculations might result in very precise values, so these are given more room
+	double jarRadius, jarVolume, beanVolume, nBeans; //calculations might result in very precise values, so these are given more room
 	
 	//display basic header:
 	cout << "This is MeadowsP1, the Jelly Bean Counter" << endl
@@ -32,9 +32,8 @@ int main()
 	//all necessary variables are now populated, this next section will do all of the math
 	jarRadius = (jarDiameter / 2.0) - jarThickness; //the 'internal' radius needs to be adjusted for glass thickness
 	jarVolume = pi * (jarRadius * jarRadius) * jarHeight; //pi times radius squared times height is the total internal volume
-	adjustedVolume = packingFactor * jarVolume; //this modifies the total volume to simulate the air between beans
 	beanVolume = beanLength * (beanDiameter * beanDiameter) * (4.0 / 3.0) * pi; //find a single bean's volume with 4/3 pi times length and diameter squared 
-	nBeans = adjustedVolume / beanVolume; //how many bean volumes fit in the 'effective' jar volume
+	nBeans = (packingFactor * jarVolume) / beanVolume; //how many bean volumes fit in the jar after accounting for air space
 
 	//begin output to user, in segments
 	cout << "\nOkay, let's see here..." << endl
